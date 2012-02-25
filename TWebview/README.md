@@ -2,14 +2,14 @@
 
 实现方法可以通过设webview里scrollView的contentInset，在头部留好自定义view的空间，再把view添加进来，随着webview的滚动缩放细调这个view的位置。这里把这些行为封装了起来做成一个扩展的UIWebView，主要解决的问题是：
 
-	1.直接通过设headerView和footerView完成头尾view的插入。
-	2.webView滚动和缩放时自动调整headerView和footerView的位置，使之看起来自然。
-	3.提供接口实现头部高度改变时进行动画
+1. 直接通过设headerView和footerView完成头尾view的插入。
+2. webView滚动和缩放时自动调整headerView和footerView的位置，使之看起来自然。
+3. 提供接口实现头部高度改变时进行动画
 
 有个问题未解决：
 
-	设置contentInset后，webview顶点的Y坐标不是0，而是小于0的一个数(负的headerView的高度)  。
-	在webview跳转页面时，会自动滚动到(0,0)位置，也就是跳到webview内容的顶部，也就是这时候headerView被隐藏了。
+设置contentInset后，webview顶点的Y坐标不是0，而是小于0的一个数(负的headerView的高度)  。
+在webview跳转页面时，会自动滚动到(0,0)位置，也就是跳到webview内容的顶部，也就是这时候headerView被隐藏了。
 
 从调用堆栈来看这次跳转是私有的UIWebDocumentView调起，无法截获阻止。只能在触发scrollViewDidScroll时让它跳回去。但还没找到方法判断什么时候该跳什么时候不该跳。
 
