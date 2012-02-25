@@ -1,0 +1,1 @@
+原生UINavigationController的返回按钮在切换视图时有左右滑动的动画(效果见iMail)，但在自定义了这个按钮后(通过设self.navigationItem.leftBarButtonItem自定义)，切换视图时按钮没有了动画。本控件解决这个问题。
